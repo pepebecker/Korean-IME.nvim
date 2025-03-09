@@ -79,7 +79,7 @@ Right Command 키를 nvim일 때 `<C-i>`로 매핑하고 그 외에는 시스템
 1. wezterm인지 확인
     - window title이 vi인지 확인
     - vi이면 command 모드가 아닌지 UI로 확인 (`wezterm cli get-text --escapes` 사용)
-    - vi이고 command 모드가 아닌 경우 <C-i> 누르기.
+    - vi이고 command 모드가 아닌 경우 `<C-i>` 누르기.
 2. 그 외에는 시스템 입력기 전환
 
 예를 들어, command 모드 여부는 lualine 양쪽 끝 내용과 색상으로 유추할 수 있습니다.
