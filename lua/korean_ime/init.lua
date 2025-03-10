@@ -1,19 +1,22 @@
 local config = require("korean_ime.config")
-local core = require("korean_ime.core")
+local hangul = require("korean_ime.hangul")
 
-M = {}
+local M = {}
 
 ---@param opts Hangul.UserConfig?
 M.setup = function(opts)
   opts = opts or {}
   config.opts = vim.tbl_deep_extend("force", {}, config.default_opts, opts)
-  core.essential_mappings()
+  hangul.essential_mappings()
 end
 
-M.change_mode = core.change_mode
-M.convert_hanja = core.convert_hanja
+M.change_mode = hangul.change_mode
 M.get_mode = function()
-  return config.mode
+  return hangul.mode
+end
+M.convert_hanja = function()
+  -- load the module only when you use it.
+  return require("korean_ime.hanja").convert_hanja()
 end
 
 return M

@@ -1,6 +1,4 @@
-M = {}
-
-M.mode = "en"
+local M = {}
 
 ---@class Hangul.UserConfig
 ---@field public hanja_db_dirs string?
