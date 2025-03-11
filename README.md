@@ -22,7 +22,7 @@ lazy.nvim:
     keys = {
       -- lazy load on 한영전환
       {
-        "<C-1>",
+        "<f12>",
         function()
           require("korean_ime").change_mode()
         end,
@@ -33,7 +33,7 @@ lazy.nvim:
     config = function()
       require("korean_ime").setup()
 
-      vim.keymap.set("i", "<C-h>", function()
+      vim.keymap.set("i", "<f9>", function()
         require("korean_ime").convert_hanja()
       end, { noremap = true, silent = true, desc = "한자" })
     end,
@@ -74,12 +74,12 @@ lazy.nvim:
 
 ### (macOS) Hammerspoon으로 nvim 감지해 한영 전환하기
 
-Right Command 키를 nvim일 때 `<C-1>`로 매핑하고 그 외에는 시스템 입력기를 전환하려면 다음과 같이 설정할 수 있습니다.
+Right Command 키를 nvim일 때 `<f12>`로 매핑하고 그 외에는 시스템 입력기를 전환하려면 다음과 같이 설정할 수 있습니다.
 
 1. wezterm인지 확인
     - window title이 vi인지 확인
     - vi이면 command 모드가 아닌지 UI로 확인 (`wezterm cli get-text --escapes` 사용)
-    - vi이고 command 모드가 아닌 경우 `<C-1>` 누르기.
+    - vi이고 command 모드가 아닌 경우 `<f12>` 누르기.
 2. 그 외에는 시스템 입력기 전환
 
 예를 들어, command 모드 여부는 lualine 양쪽 끝 내용과 색상으로 유추할 수 있습니다.
@@ -128,7 +128,7 @@ hs.hotkey.bind({}, "f18", function()
         if input_source ~= "org.youknowone.inputmethod.Gureum.qwerty" then
           hs.keycodes.currentSourceID("org.youknowone.inputmethod.Gureum.qwerty")
         end
-        hs.eventtap.keyStroke({ "ctrl" }, "1")
+        hs.eventtap.keyStroke({}, "f12")
         return
       end
     end
