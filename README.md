@@ -125,8 +125,8 @@ hs.hotkey.bind({}, "f18", function()
         and string.match(output, [[nvim .%[38:2::98:114:164m.%[49m─]])
       then
         print("not in command mode")
-        if input_source ~= "org.youknowone.inputmethod.Gureum.qwerty" then
-          hs.keycodes.currentSourceID("org.youknowone.inputmethod.Gureum.qwerty")
+        if input_source ~= "com.apple.keylayout.ABC" then
+          hs.keycodes.currentSourceID("com.apple.keylayout.ABC")
         end
         hs.eventtap.keyStroke({}, "f12")
         return
@@ -134,12 +134,12 @@ hs.hotkey.bind({}, "f18", function()
     end
   end
 
-  if input_source == "org.youknowone.inputmethod.Gureum.qwerty" then
-    hs.keycodes.currentSourceID("org.youknowone.inputmethod.Gureum.han2")
-  elseif input_source == "org.youknowone.inputmethod.Gureum.han2" then
-    hs.keycodes.currentSourceID("org.youknowone.inputmethod.Gureum.qwerty")
+  if input_source == "com.apple.keylayout.ABC" then
+    hs.keycodes.currentSourceID("com.apple.inputmethod.Korean.2SetKorean")
+  elseif input_source == "com.apple.inputmethod.Korean.2SetKorean" then
+    hs.keycodes.currentSourceID("com.apple.keylayout.ABC")
   else
-    hs.keycodes.currentSourceID("org.youknowone.inputmethod.Gureum.han2")
+    hs.keycodes.currentSourceID("com.apple.inputmethod.Korean.2SetKorean")
   end
 end)
 ```
