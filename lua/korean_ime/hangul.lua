@@ -84,7 +84,7 @@ local function update_syllable(init, med, fin)
   syllable.init = init
   syllable.med = med
   syllable.fin = fin
-  return keys .. keystrokes()
+  return keys .. M.keystrokes()
 end
 
 -------------------------------------------------------------------------------
