@@ -51,7 +51,6 @@ M.convert_hanja = function()
     return
   end
   local db = HANJADB[key]
-  vim.print(db)
 
   local descpat = ""
   if config.opts.hanja_desc_limit > 0 then
