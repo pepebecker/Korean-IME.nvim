@@ -34,8 +34,34 @@ local function load_hanja_db()
   end
 end
 
+local function get_char_before_cursor()
+  local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local line = vim.api.nvim_get_current_line()
+
+  if col == 0 then
+    return nil -- Cursor is at beginning of line
+  end
+
+  -- Get byte slice up to (but not including) cursor
+  local before_cursor = line:sub(1, col)
+
+  -- Use Lua pattern to get last full UTF-8 character
+  local last_char = before_cursor:match("[\192-\255]?[\128-\191]*$")
+
+  if not last_char or last_char == "" then
+    return nil
+  end
+
+  return last_char
+end
+
 M.convert_hanja = function()
   if vim.fn.mode() ~= "i" or hangul.mode == "en" then
+    return
+  end
+
+  local key = get_char_before_cursor()
+  if key == nil then
     return
   end
 
@@ -43,7 +69,6 @@ M.convert_hanja = function()
     load_hanja_db()
   end
 
-  local key = hangul.keystrokes()
   if HANJADB[key] == nil then
     if vim.o.verbose then
       require("korean_ime.notify").notify("No hanja match found.", "error", { title = "Korean-IME.nvim" })
